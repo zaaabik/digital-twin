@@ -1,0 +1,12 @@
+per_device_batch_size: 1
+total_batch_size: 128
+total_num_gpus: ${oc.env:WORLD_SIZE}
+per_device_total_batch_size: ${div:${total_batch_size}, ${total_num_gpus}}
+
+defaults:
+  - _self_
+  - model: llama_13b_saiga
+  - deepspeed: stage3_optimizer_offload
+  - dataset: base
+  - trainer: base
+  - paths: base

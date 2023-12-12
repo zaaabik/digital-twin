@@ -1,0 +1,29 @@
+_target_: transformers.Trainer
+args:
+  _target_: transformers.TrainingArguments
+  output_dir: ${paths.base_logdir}/${model.base_architecture}_${dataset.path}_gpus_${total_num_gpus}
+  learning_rate: 0.00005
+  optim: adamw_torch
+  push_to_hub: true
+  hub_private_repo: true
+  per_device_eval_batch_size: ${per_device_batch_size}
+  per_device_train_batch_size: ${per_device_batch_size}
+  gradient_accumulation_steps: ${div:${total_batch_size}, ${per_device_batch_size}}
+  bf16: true
+  evaluation_strategy: steps
+  save_strategy: steps
+  metric_for_best_model: eval_loss
+  lr_scheduler_type: cosine
+  save_steps: 250
+  eval_steps: 250
+  logging_steps: 5
+  save_total_limit: 1
+  warmup_steps: 100
+  num_train_epochs: 50
+  report_to: comet_ml
+  ddp_find_unused_parameters: False
+  deepspeed: ${deepspeed}
+data_collator:
+  _target_: transformers.DataCollatorForTokenClassification
+  tokenizer: ${model.tokenizer}
+  pad_to_multiple_of: 8

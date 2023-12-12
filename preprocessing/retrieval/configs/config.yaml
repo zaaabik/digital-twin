@@ -1,0 +1,11 @@
+output_path: "../../data/results_qa/"
+dataset_name: "zaaabik/qa_dataset"
+
+datasets:
+  vk:
+    _target_: preprocessing.retrieval.src.vk.process_raw.VkRetrievalMining
+    min_years: 2015
+    num_workers: 8
+    debug: false
+    data_path: "../../data/raw/VK"
+    output_path: ${output_path}/vk.jsonl

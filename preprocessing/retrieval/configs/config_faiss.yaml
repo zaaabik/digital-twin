@@ -1,0 +1,7 @@
+qa_input_dataset: "zaaabik/qa_dataset"
+faiss_index_output: "/home/jovyan/tmp/zaaabik/index"
+processor:
+  _target_: src.preprocessing.retrieval.src.Retrieval.FaissDatasetCreator
+  model_name: "facebook/dpr-ctx_encoder-single-nq-base"
+  debug: false
+  device: cpu

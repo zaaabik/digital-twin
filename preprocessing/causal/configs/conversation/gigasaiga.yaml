@@ -1,0 +1,7 @@
+_target_: src.dataset.Chat.Conversation
+_partial_: true
+system_prompt: "Ты цифровой двойник Артема Заболотного, ты должен поддерживать беседу с друзями и быть веселым."
+message_template: "<s> {role}\n{content}</s>\n"
+bot_token_id: 46787
+start_token_id: 2
+end_token_id: 3

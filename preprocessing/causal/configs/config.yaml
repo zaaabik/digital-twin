@@ -1,0 +1,89 @@
+output_path: "../../data/results"
+tokenizer_name: IlyaGusev/saiga2_13b_lora
+dataset_name: zaaabik/causal_conversation_dataset_splitted_with_reply_v2
+debug: false
+max_token_count: 512
+num_workers: 8
+
+defaults:
+  - _self_
+  - conversation: llama_saiga
+
+task: json
+#task: dataset
+
+datasets:
+  #  bot_history:
+  #    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+  #    tokenizer_name: ${tokenizer_name}
+  #    conversation: ${conversation}
+  #    num_workers: ${num_workers}
+  #    debug: ${debug}
+  #    max_token_count: ${max_token_count}
+  #    data_reader:
+  #      _target_: preprocessing.utils.social_reader.bot_history.BotHistoryBaseSocialReader
+  #      data_path: "../../data/raw/bot_history"
+  #      num_workers: ${num_workers}
+  #      debug: ${debug}
+  #  synthetic:
+  #    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+  #    tokenizer_name: ${tokenizer_name}
+  #    conversation: ${conversation}
+  #    num_workers: ${num_workers}
+  #    debug: ${debug}
+  #    max_token_count: ${max_token_count}
+  #    data_reader:
+  #      _target_: preprocessing.utils.social_reader.synthetic.SyntheticBaseSocialReader
+  #  tg:
+  #    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+  #    tokenizer_name: ${tokenizer_name}
+  #    conversation: ${conversation}
+  #    num_workers: ${num_workers}
+  #    debug: ${debug}
+  #    max_token_count: ${max_token_count}
+  #    data_reader:
+  #      _target_: preprocessing.utils.social_reader.TG.TGBaseSocialReader
+  #      data_path: "../../data/raw/Telegram Desktop/DataExport_2023-10-20"
+  #      num_workers: ${num_workers}
+  #      debug: ${debug}
+  #      allowed_chat_types:
+  #        - personal_chat
+  vk:
+    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+    tokenizer_name: ${tokenizer_name}
+    conversation: ${conversation}
+    num_workers: ${num_workers}
+    debug: ${debug}
+    max_token_count: ${max_token_count}
+    data_reader:
+      _target_: preprocessing.utils.social_reader.VK.VKBaseSocialReader
+      data_path: "../../data/raw/VK"
+      num_workers: ${num_workers}
+      debug: ${debug}
+      min_years: 2015
+#  instagram:
+#    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+#    tokenizer_name: ${tokenizer_name}
+#    conversation: ${conversation}
+#    num_workers: ${num_workers}
+#    debug: ${debug}
+#    max_token_count: ${max_token_count}
+#    data_reader:
+#      _target_: preprocessing.utils.social_reader.Instagram.InstagramBaseSocialReader
+#      data_path: "../../data/raw/instagram"
+#      num_workers: ${num_workers}
+#      debug: ${debug}
+#  tg_reply:
+#    _target_: preprocessing.causal.CausalDatasetMining.CausalDataset
+#    tokenizer_name: ${tokenizer_name}
+#    conversation: ${conversation}
+#    num_workers: ${num_workers}
+#    debug: ${debug}
+#    max_token_count: ${max_token_count}
+#    data_reader:
+#      _target_: preprocessing.utils.social_reader.TG.TGReplyOnlySocialReader
+#      data_path: "../../data/raw/Telegram Desktop/DataExport_2023-10-20"
+#      num_workers: ${num_workers}
+#      debug: ${debug}
+#      allowed_chat_types:
+#        - personal_chat

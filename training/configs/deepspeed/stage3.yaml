@@ -1,0 +1,17 @@
+bf16:
+  enabled: true
+optimizer:
+  type: Adam
+  params:
+    lr: auto
+    betas: auto
+    eps: auto
+    weight_decay: auto
+zero_optimization:
+  stage: 3
+  stage3_gather_16bit_weights_on_model_save: true
+  overlap_comm: false
+  reduce_scatter: true
+train_batch_size: auto
+gradient_accumulation_steps: auto
+train_micro_batch_size_per_gpu: auto

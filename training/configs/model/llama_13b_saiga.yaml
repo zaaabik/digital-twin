@@ -1,0 +1,12 @@
+base_architecture: IlyaGusev/saiga2_13b_lora
+
+tokenizer:
+  _target_: transformers.AutoTokenizer.from_pretrained
+  pretrained_model_name_or_path: ${model.base_architecture}
+
+architecture:
+  _target_: transformers.AutoModelForCausalLM.from_pretrained
+  pretrained_model_name_or_path: ${model.base_architecture}
+  use_flash_attention_2: true
+  torch_dtype: torch.bfloat16
+  device_map: null
